@@ -17,7 +17,16 @@ from x10.utils.http import StreamDataType
 from sortedcontainers import SortedDict
 
 load_dotenv()
-logging.basicConfig(level=logging.INFO)
+log_path = os.path.join(os.path.dirname(__file__), 'scalper.log')
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler(log_path),
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger("scalper")
 
 # --- CONFIGURATION ---
